@@ -1,0 +1,20 @@
+release:
+  stage: deploy
+  allow_failure: false
+  image: node:10
+  variables:
+    GITLAB_DOMAIN: "gitlab.com"
+    # Note, that we skip all pipelines for this commit with `[ci skip]`:
+    COMMIT_MESSAGE: "chore(release): Version %s [ci skip]"
+  before_script:
+    - npm install -g standard-version
+    # Setting up your git user:
+    - git config --global user.email "kira@wemake.services"
+    - git config --global user.name "Kira Project Assistant"
+  script:
+    - standard-version --git-tag-fallback -n -m "$COMMIT_MESSAGE"
+    - git push --follow-tags "https://kira-bot:${KIRA_GITLAB_PERSONAL_TOKEN}@${GITLAB_DOMAIN}/${CI_PROJECT_PATH}.git" HEAD:"$CI_COMMIT_REF_NAME"
+  only:
+    - master
+  # Uncomment to make the release process manual:
+  # when: manual

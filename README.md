@@ -59,23 +59,22 @@ There are two possible ways to release your software:
 1. On every push to `master` (we consider `master` branch protected by default)
 2. Manually by setting up [`manual` CI jobs](https://docs.gitlab.com/ee/ci/yaml/#whenmanual)
 
+### Extra settings
+
+They are not required, but may help you:
+0. Invite `@kira-bot` to your project
+1. All [tags must be protected](https://docs.gitlab.com/ee/user/project/protected_tags.html), only `@kira-bot` is allowed to create them
+2. [`master` branch must be protected](https://docs.gitlab.com/ee/user/project/protected_branches.html), only `@kira-bot` is allowed to push
+
+### CI variables
+
+You would need to set:
+
+- `KIRA_GITLAB_PERSONAL_TOKEN` secret variable in CI configuration
+
 
 ## Running
 
-Create a job inside `.gitlab-ci.yml`:
-
-```yml
-release:
-  stage: deploy
-  allow_failure: false
-  image: node:10
-  # Uncomment to make the release process manual:
-  # when: manual
-  install:
-    - npm install -g standard-version
-  script:
-    - standard-version --no-verify --git-tag-fallback
-  cache:
-    paths:
-      - node_modules/
-```
+Copy-paste our `.gitlab-ci.yml` file.
+You can even directly [include it](https://docs.gitlab.com/ee/ci/yaml/#include-examples)
+into your own `.gitlab-ci.yml` file.
