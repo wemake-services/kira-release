@@ -1,0 +1,13 @@
+{
+  "name": "kira-release",
+  "version": "0.1.0",
+  "description": "Kira's micro-bot to release your code and track changes",
+  "main": "index.js",
+  "repository": "https://github.com/wemake-services/kira-release.git",
+  "author": "sobolevn <mail@sobolevn.me>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "standard-version": "^5.0.2"
+  }
+}

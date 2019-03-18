@@ -59,3 +59,24 @@ It is recommended to use this bot as a part of your CI.
 There are two possible ways to release your software:
 1. On every push to `master` (we consider `master` branch protected by default)
 2. Manually by setting up [`manual` CI jobs](https://docs.gitlab.com/ee/ci/yaml/#whenmanual)
+
+
+## Running
+
+Create a job inside `.gitlab-ci.yml`:
+
+```yml
+release:
+  stage: deploy
+  allow_failure: false
+  image: node:10
+  # Uncomment to make the release process manual:
+  # when: manual
+  install:
+    - npm install -g standard-version
+  script:
+    - standard-version --no-verify --git-tag-fallback
+  cache:
+    paths:
+      - node_modules/
+```
