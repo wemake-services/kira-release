@@ -4,8 +4,8 @@ release:
   image: node:10
   variables:
     GITLAB_DOMAIN: "gitlab.com"
-    # Note, that we skip all pipelines for this commit with `[ci skip]`:
-    COMMIT_MESSAGE: "chore(release): Version %s [ci skip]"
+    # Note, that you can skip all pipelines by adding `[ci skip]` to message:
+    COMMIT_MESSAGE: "chore(release): %s"
   before_script:
     - npm install -g standard-version
     # Setting up your git user:
@@ -16,5 +16,11 @@ release:
     - git push --follow-tags "https://kira-bot:${KIRA_GITLAB_PERSONAL_TOKEN}@${GITLAB_DOMAIN}/${CI_PROJECT_PATH}.git" HEAD:"$CI_COMMIT_REF_NAME"
   only:
     - master
+  except:
+    variables:
+      # We skip commits created by our bot,
+      # because otherwise we can go into the infite loop,
+      # when new release commits will trigger new pipelines and new releases.
+      - $GITLAB_USER_LOGIN =~ /kira-bot/
   # Uncomment to make the release process manual:
   # when: manual
