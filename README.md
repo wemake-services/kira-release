@@ -21,7 +21,7 @@ Every commit is validated to be compatible to [`conventional-changelog`](https:/
 format (here's our format just for example):
 
 ```js
-/^(revert: )?(feat|fix|docs|refactor|test|chore)(\(.+\))?: .{1,50} refs #\d+/
+/^(revert: )?(feat|fix|docs|refactor|test|chore)(\(.+\))?: .{1,50} (refs #\d+)?/
 ```
 
 However, we **do not** enforce any particular format with this project.
