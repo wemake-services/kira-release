@@ -1,0 +1,2 @@
+# Otherwise it will fail inside CI looking for this specific repo:
+.git/

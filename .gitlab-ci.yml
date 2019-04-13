@@ -20,7 +20,7 @@ release:
     # We only care about the name of the image:
     - docker build -t "$REGISTRY/$GROUP_NAME/$PROJECT_NAME" .
     # Release everything!
-    - npm run release
+    - semantic-release
   only:
     - master
   # Uncomment to make the release process manual:

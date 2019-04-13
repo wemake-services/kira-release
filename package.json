@@ -4,6 +4,7 @@
   "description": "Kira's micro-bot to release your code and track changes",
   "main": "index.js",
   "author": "sobolevn <mail@sobolevn.me>",
+  "repository": "https://github.com/wemake-services/kira-release.git",
   "license": "MIT",
   "private": false,
   "scripts": {
