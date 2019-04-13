@@ -19,6 +19,8 @@ release:
     # modify it to suite your needs as you wish.
     # We only care about the name of the image:
     - docker build -t "$REGISTRY/$GROUP_NAME/$PROJECT_NAME" .
+    # Copy the release configuration:
+    - cp /release/release.config.js .
     # Release everything!
     - semantic-release
   only:
