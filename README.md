@@ -9,13 +9,20 @@ Automate routine work with releasing new versions.
 
 Part of the [`@kira`](https://github.com/wemake-services/kira) bots family.
 
+## Release steps
+
+So, when the time to release comes our bot:
+1. calculates a new semantic version since the last tagged release,
+2. summarizes the release notes from these commits,
+3. creates a signed GitLab release,
+4. creates a changelog entry, commits it to the project,
+5. tags a new release with the newly calculated version number,
+6. optionally uploads new `docker` images to GitLab registry
+
+Internally we use [`semantic-release`](https://github.com/semantic-release/semantic-release).
+With multiple plugins.
 
 ## How does it work?
-
-Our release bot does make sure that everything is ready for the next release:
-1. Version is [semantically](https://semver.org/) bumped
-2. Git tags are in place
-3. Changelog is up-to-date
 
 Every commit is validated to be compatible to [`conventional-changelog`](https://github.com/conventional-changelog)
 format (here's our format just for example):
@@ -41,17 +48,6 @@ Total 3 (delta 2), reused 0 (delta 0)
 remote: GitLab: Commit message does not follow the pattern '/^(revert: )?(feat|fix|docs|refactor|test|chore)(\(.+\))?: .{1,50} refs #\d+/'
 ```
 
-So, when the time to release comes our bot calculates
-a new semantic version since the last tagged release,
-creates a changelog entry, commits it to the project,
-and tags a new release with the newly calculated version number.
-
-Then you can execute any deployment
-scripts you have to distribute your project.
-
-Internally we use [`standard-version`](https://github.com/conventional-changelog/standard-version) and expose the same [life-cycle hooks](https://github.com/conventional-changelog/standard-version#lifecycle-scripts).
-
-
 ## Gitlab CI setup
 
 It is recommended to use this bot as a part of your CI.
@@ -68,13 +64,17 @@ They are not required, but may help you:
 
 ### CI variables
 
-You would need to set:
+You are required to set:
 
-- `KIRA_GITLAB_PERSONAL_TOKEN` secret variable in CI configuration
+- `GITLAB_TOKEN` secret variable in CI configuration
+- `GROUP_NAME` and `PROJECT_NAME` either in CI configuration or in `.gitlab-ci.yml`
+
+You can also optionally set:
+
+- `KIRA_RELEASE_SKIP_DOCKER` to `'true'`, so your `docker` image deploy will be skipped
+- `KIRA_RELEASE_ASSETS` to any [assets](https://github.com/semantic-release/git#assets) string, so it will upload these files to GitLab release
 
 
 ## Running
 
-Copy-paste our `.gitlab-ci.yml` file.
-You can even directly [include it](https://docs.gitlab.com/ee/ci/yaml/#include-examples)
-into your own `.gitlab-ci.yml` file.
+Copy-paste our `.gitlab-ci.yml` file. And modify it to match your project.

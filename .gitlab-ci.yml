@@ -1,26 +1,27 @@
+variables:
+  # Required. Adjust to match your project:
+  GROUP_NAME: ""
+  PROJECT_NAME: ""
+
 release:
   stage: deploy
   allow_failure: false
-  image: node:10
+  image: wemakeservices/kira-release:latest
+  services:
+    - docker:dind
   variables:
-    GITLAB_DOMAIN: "gitlab.com"
-    # Note, that you can skip all pipelines by adding `[ci skip]` to message:
-    COMMIT_MESSAGE: "chore(release): %s"
-  before_script:
-    - npm install -g standard-version
-    # Setting up your git user:
-    - git config --global user.email "kira@wemake.services"
-    - git config --global user.name "Kira Project Assistant"
+    DOCKER_DRIVER: overlay2
+    REGISTRY: "registry.gitlab.com"
+    # Uncomment to skip gitlab docker registry releases:
+    # KIRA_RELEASE_SKIP_DOCKER: 'true'
   script:
-    - standard-version --git-tag-fallback -n -m "$COMMIT_MESSAGE"
-    - git push --follow-tags "https://kira-bot:${KIRA_GITLAB_PERSONAL_TOKEN}@${GITLAB_DOMAIN}/${CI_PROJECT_PATH}.git" HEAD:"$CI_COMMIT_REF_NAME"
+    # Build local image to be released to gitlab registry,
+    # modify it to suite your needs as you wish.
+    # We only care about the name of the image:
+    - docker build -t "$REGISTRY/$GROUP_NAME/$PROJECT_NAME" .
+    # Release everything!
+    - npm run release
   only:
     - master
-  except:
-    variables:
-      # We skip commits created by our bot,
-      # because otherwise we can go into the infite loop,
-      # when new release commits will trigger new pipelines and new releases.
-      - $GITLAB_USER_LOGIN =~ /kira-bot/
   # Uncomment to make the release process manual:
   # when: manual
