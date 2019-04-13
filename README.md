@@ -45,7 +45,7 @@ Delta compression using up to 4 threads.
 Compressing objects: 100% (3/3), done.
 Writing objects: 100% (3/3), 692 bytes | 692.00 KiB/s, done.
 Total 3 (delta 2), reused 0 (delta 0)
-remote: GitLab: Commit message does not follow the pattern '/^(revert: )?(feat|fix|docs|refactor|test|chore)(\(.+\))?: .{1,50} refs #\d+/'
+remote: GitLab: Commit message does not follow the pattern '/^(revert: )?(feat|fix|docs|refactor|chore) ...'
 ```
 
 ## Gitlab CI setup
