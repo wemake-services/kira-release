@@ -10,6 +10,7 @@ ENV GIT_AUTHOR_NAME="kira-bot" \
   PATH="/release/node_modules/.bin:${PATH}"
 
 RUN apk --no-cache add \
+  curl \
   git \
   openssh \
   nodejs \
