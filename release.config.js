@@ -56,7 +56,7 @@ if (replaceConfig) {
 }
 
 // Back to basic release pipeline:
-releasePipeline.plugins.concat([
+releasePipeline.plugins.push(...[
   '@semantic-release/release-notes-generator',
   '@semantic-release/changelog',
 
