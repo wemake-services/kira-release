@@ -13,6 +13,7 @@ Part of the [`@kira`](https://github.com/wemake-services/kira) bots family.
 ## Release steps
 
 So, when the time to release comes our bot:
+
 1. calculates a new semantic version since the last tagged release,
 2. summarizes the release notes from these commits,
 3. creates a signed GitLab release,
@@ -53,12 +54,14 @@ remote: GitLab: Commit message does not follow the pattern '/^(revert: )?(feat|f
 
 It is recommended to use this bot as a part of your CI.
 There are two possible ways to release your software:
+
 1. On every push to `master` (we consider `master` branch protected by default)
 2. Manually by setting up [`manual` CI jobs](https://docs.gitlab.com/ee/ci/yaml/#whenmanual)
 
 ### Extra settings
 
 They are not required, but may help you:
+
 0. Invite `@kira-bot` to your project
 1. All [tags must be protected](https://docs.gitlab.com/ee/user/project/protected_tags.html), only `@kira-bot` is allowed to create them
 2. [`master` branch must be protected](https://docs.gitlab.com/ee/user/project/protected_branches.html), only `@kira-bot` is allowed to push
