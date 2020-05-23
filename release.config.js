@@ -24,12 +24,16 @@ const dockerImageName = `${process.env.GROUP_NAME}/${process.env.PROJECT_NAME}`
 const tobeCommitted = ['CHANGELOG.md']
 if (replaceConfig.project) {
   tobeCommitted.push(replaceConfig.project)
+  console.log('Found replacement configuration')
+  console.log(replaceConfig)
 }
 
 // Pipeline definition:
 const releasePipeline = {
   'plugins': [
     '@semantic-release/commit-analyzer',
+    '@semantic-release/release-notes-generator',
+    '@semantic-release/changelog',
   ],
 }
 
@@ -57,9 +61,6 @@ if (replaceConfig) {
 
 // Back to basic release pipeline:
 releasePipeline.plugins.push(...[
-  '@semantic-release/release-notes-generator',
-  '@semantic-release/changelog',
-
   ['@semantic-release/git', {
     'assets': tobeCommitted,
   }],
