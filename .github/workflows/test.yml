@@ -12,6 +12,7 @@ jobs:
     - name: run docker-based test
       run: |
         docker build . --tag=wemake-services/kira-release
-        docker run wemake-services/kira-release \
+        docker run \
           -e KIRA_RELEASE_SKIP_DOCKER=true \
+          wemake-services/kira-release \
           semantic-release --dry-run
