@@ -9,9 +9,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: build docker image
+      run: docker build . --tag=wemake-services/kira-release
+
     - name: run docker-based test
       run: |
-        docker build . --tag=wemake-services/kira-release
         docker run \
           -e KIRA_RELEASE_SKIP_DOCKER=true \
           wemake-services/kira-release \
