@@ -20,7 +20,7 @@ const replaceConfig = JSON.parse(
 const skipDocker = process.env.KIRA_RELEASE_SKIP_DOCKER
 const dockerImageName = `${process.env.GROUP_NAME}/${process.env.PROJECT_NAME}`
 
-// Helpers:
+// Files to be commited back to the repo later on:
 const tobeCommitted = ['CHANGELOG.md']
 if (replaceConfig.project) {
   tobeCommitted.push(replaceConfig.project)
@@ -37,7 +37,7 @@ const releasePipeline = {
 if (replaceConfig) {
   releasePipeline.plugins.push([
     '@google/semantic-release-replace-plugin', {
-      'replacements': {
+      'replacements': [{
         'files': [replaceConfig.project],
         'from': replaceConfig.from,
         'to': replaceConfig.to,
@@ -50,7 +50,7 @@ if (replaceConfig) {
           }
         ],
         'countMatches': true,
-      }
+      }],
     },
   ])
 }
