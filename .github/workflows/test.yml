@@ -1,0 +1,16 @@
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: run docker-based test
+      run: |
+        docker build . --tag=wemake-services/kira-release
+        docker run wemake-services/kira-release \
+          -e KIRA_RELEASE_SKIP_DOCKER=true \
+          semantic-release --dry-run
