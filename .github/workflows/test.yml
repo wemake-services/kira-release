@@ -16,5 +16,6 @@ jobs:
       run: |
         docker run \
           -e KIRA_RELEASE_SKIP_DOCKER=true \
+          -e KIRA_RELEASE_REPLACE_CONFIG='{ "project": "package.json", "from": "\"version\": \".*\"", "to": "\"version\": \"${nextRelease.version}\"" }' \
           wemake-services/kira-release \
           semantic-release --dry-run
