@@ -77,7 +77,7 @@ You can also optionally set:
 
 - `KIRA_RELEASE_SKIP_DOCKER` to `'true'`, so your `docker` image deploy will be skipped
 - `KIRA_RELEASE_ASSETS` to any [assets](https://github.com/semantic-release/git#assets) string, so it will upload these files to GitLab release
-- `KIRA_RELEASE_REPLACE_CONFIG` string with `json` config of how to bump version numbers in a project definition file, example: `KIRA_RELEASE_REPLACE_CONFIG='{ "project": "package.json", "from": "\"version\": \".*\"", "to": "\"version\": \"${nextRelease.version}\"" }'`
+- `KIRA_RELEASE_REPLACE_CONFIG` string with `json` config of how to bump version numbers in a project definition file, example: `KIRA_RELEASE_REPLACE_CONFIG='{ "project": "package.json", "from": "\"version\": \".*\"", "to": "\"version\": \"${nextRelease.version}\"" }'`. You might want to use `$$` to escape `$` char in several environments
 
 
 ## Running
