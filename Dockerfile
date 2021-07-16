@@ -1,4 +1,4 @@
-FROM docker:latest
+FROM wemakeservices/wemake-dind:latest
 
 LABEL maintainer="sobolevn@wemake.services"
 LABEL vendor="wemake.services"
