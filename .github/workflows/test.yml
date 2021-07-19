@@ -22,7 +22,7 @@ jobs:
         docker run \
           -e KIRA_RELEASE_SKIP_DOCKER=true \
           -e KIRA_RELEASE_REPLACE_CONFIG='{ "project": "package.json", "from": "\"version\": \".*\"", "to": "\"version\": \"${nextRelease.version}\"" }' \
-          -e KIRA_RELEASE_EXEC_CONFIG='{ "prepareCmd": "echo 'released prepared!'" }' \
+          -e KIRA_RELEASE_EXEC_CONFIG='{ "prepareCmd": "echo released" }' \
           -v $PWD/tests:/tests \
           wemake-services/kira-release \
           sh /tests/run.sh
