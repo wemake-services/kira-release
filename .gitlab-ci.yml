@@ -12,13 +12,15 @@ release:
   variables:
     DOCKER_DRIVER: overlay2
     REGISTRY: "registry.gitlab.com"
-    # Uncomment to skip gitlab docker registry releases:
+    # Uncomment to entirely skip gitlab docker registry releases:
     # KIRA_RELEASE_SKIP_DOCKER: 'true'
-  script:
+
     # Build local image to be released to gitlab registry,
     # modify it to suite your needs as you wish.
     # We only care about the name of the image:
-    - docker build -t "$REGISTRY/$GROUP_NAME/$PROJECT_NAME" .
+    KIRA_RELEASE_EXEC_CONFIG: |
+      {"prepareCmd": "docker build -t \"$REGISTRY/$GROUP_NAME/$PROJECT_NAME\" ."}
+  script:
     # Copy the release configuration:
     - cp /release/release.config.js .
     # Release everything!
