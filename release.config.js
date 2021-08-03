@@ -20,9 +20,10 @@ const skipDocker = process.env.KIRA_RELEASE_SKIP_DOCKER
 // Files to be committed back to the repo later on:
 const tobeCommitted = ['CHANGELOG.md']
 if (replaceConfig.project) {
-  tobeCommitted.push(replaceConfig.project)
   console.log('Found replacement configuration')
   console.log(replaceConfig)
+  
+  tobeCommitted.push(replaceConfig.project)
 }
 
 // Pipeline definition:
