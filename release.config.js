@@ -22,7 +22,7 @@ const tobeCommitted = ['CHANGELOG.md']
 if (replaceConfig.project) {
   console.log('Found replacement configuration')
   console.log(replaceConfig)
-  
+
   tobeCommitted.push(replaceConfig.project)
 }
 
