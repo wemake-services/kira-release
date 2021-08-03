@@ -47,7 +47,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: wemake-services/kira-release
+          images: wemakeservices/kira-release
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
