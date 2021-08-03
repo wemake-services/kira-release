@@ -26,6 +26,11 @@ if (replaceConfig.project) {
   tobeCommitted.push(replaceConfig.project)
 }
 
+if (Object.keys(execConfig).length !== 0) {
+  console.log('Found exec configuration')
+  console.log(execConfig)
+}
+
 // Pipeline definition:
 const releasePipeline = {
   'plugins': [
@@ -62,9 +67,6 @@ releasePipeline.plugins.push(['@semantic-release/git', { 'assets': tobeCommitted
 
 // Maybe we should execute some extra steps before making a deployment?
 if (Object.keys(execConfig).length !== 0) {
-  console.log('Found exec configuration')
-  console.log(execConfig)
-
   releasePipeline.plugins.push([
     // See: https://github.com/semantic-release/exec
     '@semantic-release/exec', execConfig,
