@@ -18,18 +18,20 @@ const execConfig = JSON.parse(process.env.KIRA_RELEASE_EXEC_CONFIG || '{}')
 const skipDocker = process.env.KIRA_RELEASE_SKIP_DOCKER
 
 // Files to be committed back to the repo later on:
-const tobeCommitted = ['CHANGELOG.md']
+const toBeCommitted = ['CHANGELOG.md']
 if (replaceConfig.project) {
   console.log('Found replacement configuration')
   console.log(replaceConfig)
 
-  tobeCommitted.push(replaceConfig.project)
+  toBeCommitted.push(replaceConfig.project)
 }
 
 if (Object.keys(execConfig).length !== 0) {
   console.log('Found exec configuration')
   console.log(execConfig)
 }
+
+console.log('Going to commit:', toBeCommitted)
 
 // Pipeline definition:
 const releasePipeline = {
@@ -63,7 +65,7 @@ if (replaceConfig) {
 }
 
 // We want to have this commit in a build before any `docker` stuff:
-releasePipeline.plugins.push(['@semantic-release/git', { 'assets': tobeCommitted }])
+releasePipeline.plugins.push(['@semantic-release/git', { 'assets': toBeCommitted }])
 
 // Maybe we should execute some extra steps before making a deployment?
 if (Object.keys(execConfig).length !== 0) {
