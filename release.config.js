@@ -56,6 +56,9 @@ if (replaceConfig) {
   ])
 }
 
+// We want to have this commit in a build before any `docker` stuff:
+releasePipeline.plugins.push(['@semantic-release/git', { 'assets': tobeCommitted }])
+
 // Maybe we should execute some extra steps before making a deployment?
 if (Object.keys(execConfig).length !== 0) {
   console.log('Found exec configuration')
@@ -68,13 +71,7 @@ if (Object.keys(execConfig).length !== 0) {
 }
 
 // Back to basic release pipeline:
-releasePipeline.plugins.push(...[
-  ['@semantic-release/git', {
-    'assets': tobeCommitted,
-  }],
-
-  ['@semantic-release/gitlab', { assets }],
-])
+releasePipeline.plugins.push(['@semantic-release/gitlab', { assets }])
 
 // Maybe we should crete a docker release?
 if (!skipDocker || skipDocker.toLowerCase() !== 'true') {
