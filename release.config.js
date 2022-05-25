@@ -16,7 +16,7 @@ const replaceConfig = JSON.parse(
 )
 const execConfig = JSON.parse(process.env.KIRA_RELEASE_EXEC_CONFIG || '{}')
 const skipDocker = process.env.KIRA_RELEASE_SKIP_DOCKER
-const branches = process.env.KIRA_RELEASE_BRANCHES || ['master', 'main']
+const branches = JSON.parse(process.env.KIRA_RELEASE_BRANCHES || '["master", "main"]')
 
 // Files to be committed back to the repo later on:
 const toBeCommitted = ['CHANGELOG.md']
