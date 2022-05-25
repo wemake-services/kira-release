@@ -16,6 +16,7 @@ const replaceConfig = JSON.parse(
 )
 const execConfig = JSON.parse(process.env.KIRA_RELEASE_EXEC_CONFIG || '{}')
 const skipDocker = process.env.KIRA_RELEASE_SKIP_DOCKER
+const branches = process.env.KIRA_RELEASE_BRANCHES || ['master', 'main']
 
 // Files to be committed back to the repo later on:
 const toBeCommitted = ['CHANGELOG.md']
@@ -35,6 +36,7 @@ console.log('Going to commit:', toBeCommitted)
 
 // Pipeline definition:
 const releasePipeline = {
+  'branches': branches,
   'plugins': [
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',
