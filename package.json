@@ -18,7 +18,7 @@
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/gitlab": "^9.4.1",
     "@semantic-release/release-notes-generator": "^10.0.3",
-    "semantic-release": "^19.0.3",
+    "semantic-release": "^19.0.4",
     "semantic-release-gitlab-docker": "^3.0.0"
   }
 }
