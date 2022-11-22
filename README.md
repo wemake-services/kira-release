@@ -79,7 +79,7 @@ You can also optionally set:
 - `KIRA_RELEASE_ASSETS` to any [assets](https://github.com/semantic-release/git#assets) string, so it will upload these files to GitLab release
 - `KIRA_RELEASE_EXEC_CONFIG` string with `json` config to pass to [`@semantic-release/exec`](https://github.com/semantic-release/exec). Related docs on [why](https://semantic-release.gitbook.io/semantic-release/support/faq#how-can-i-use-a-npm-build-script-that-requires-the-package-jsons-version) would you possibly need this
 - `KIRA_RELEASE_REPLACE_CONFIG` string with `json` config of how to [bump version numbers](https://github.com/google/semantic-release-replace-plugin) in a project definition file, example: `KIRA_RELEASE_REPLACE_CONFIG='{ "project": "package.json", "from": "\"version\": \".*\"", "to": "\"version\": \"${nextRelease.version}\"" }'`
-- `KIRA_RELEASE_BRANCHES` [to semantic release branches](https://semantic-release.gitbook.io/semantic-release/usage/configuration#branches) default: ['master',  'main']
+- `KIRA_RELEASE_BRANCHES` [to semantic release branches](https://semantic-release.gitbook.io/semantic-release/usage/configuration#branches) default: `['master',  'main']`
 
 **Note:** You might want to use `$$` to escape `$` char in several environments like GitLab CI configuration file
 
