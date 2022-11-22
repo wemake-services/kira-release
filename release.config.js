@@ -10,7 +10,7 @@
 // See README.md for more options and their description.
 
 // Configuration:
-const assets = process.env.KIRA_RELEASE_ASSETS || ''
+const assets = process.env.KIRA_RELEASE_ASSETS || []
 const replaceConfig = JSON.parse(
   process.env.KIRA_RELEASE_REPLACE_CONFIG || '{}',
 )
