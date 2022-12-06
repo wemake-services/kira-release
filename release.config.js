@@ -81,8 +81,8 @@ if (Object.keys(execConfig).length !== 0) {
 releasePipeline.plugins.push(['@semantic-release/gitlab', { assets }])
 
 // Maybe we should crete a docker release?
+// If it is not a docker-based app, this step will be ignored:
 if (!skipDocker || skipDocker.toLowerCase() !== 'true') {
-  // If it is not a docker-based app, this step will be ignored:
   releasePipeline.plugins.push([
     'semantic-release-gitlab-docker', {
       'name': `${process.env.GROUP_NAME}/${process.env.PROJECT_NAME}`,
