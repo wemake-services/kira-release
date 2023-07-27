@@ -1,2 +1,11 @@
 # Otherwise it will fail inside CI looking for this specific repo:
 .git/
+
+# Local files, not useful for the docker image:
+.github/
+.dockerignore
+node_modules
+.gitlab-ci.yml
+.gitignore
+.editorconfig
+tests/
