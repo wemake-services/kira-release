@@ -47,7 +47,7 @@ const releasePipeline = {
 // Maybe we should update some files with versions?
 if (replaceConfig) {
   releasePipeline.plugins.push([
-    '@google/semantic-release-replace-plugin', {
+    'semantic-release-replace-plugin', {
       'replacements': [{
         'files': [replaceConfig.project],
         'from': replaceConfig.from,

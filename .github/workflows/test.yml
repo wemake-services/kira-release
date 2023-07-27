@@ -17,6 +17,12 @@ jobs:
     - name: build docker image
       run: docker build . --tag=wemake-services/kira-release
 
+    - name: check that `kira-release` module is importable
+      run: |
+        docker run \
+          wemake-services/kira-release \
+          node -p 'require("kira-release")'
+
     - name: run minimal docker-based test
       run: |
         docker run \
