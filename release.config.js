@@ -47,7 +47,7 @@ const releasePipeline = {
 // Maybe we should update some files with versions?
 if (replaceConfig) {
   releasePipeline.plugins.push([
-    '@google/semantic-release-replace-plugin', {
+    'semantic-release-replace-plugin', {
       'replacements': [{
         'files': [replaceConfig.project],
         'from': replaceConfig.from,
@@ -83,11 +83,13 @@ releasePipeline.plugins.push(['@semantic-release/gitlab', { assets }])
 // Maybe we should crete a docker release?
 // If it is not a docker-based app, this step will be ignored:
 if (!skipDocker || skipDocker.toLowerCase() !== 'true') {
-  releasePipeline.plugins.push([
-    'semantic-release-gitlab-docker', {
-      'name': `${process.env.GROUP_NAME}/${process.env.PROJECT_NAME}`,
-    },
-  ])
+  const imageName = `${process.env.GROUP_NAME}/${process.env.PROJECT_NAME}`
+  console.log('Preparing docker image release:', imageName)
+  releasePipeline.plugins.push(['kira-release', { imageName }])
+} else {
+  console.log(
+    `Skipping docker, because KIRA_RELEASE_SKIP_DOCKER is set to ${skipDocker}`,
+  )
 }
 
 module.exports = releasePipeline
