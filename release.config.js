@@ -83,11 +83,9 @@ releasePipeline.plugins.push(['@semantic-release/gitlab', { assets }])
 // Maybe we should crete a docker release?
 // If it is not a docker-based app, this step will be ignored:
 if (!skipDocker || skipDocker.toLowerCase() !== 'true') {
-  releasePipeline.plugins.push([
-    'kira-release', {
-      'imageName': `${process.env.GROUP_NAME}/${process.env.PROJECT_NAME}`,
-    },
-  ])
+  const imageName = `${process.env.GROUP_NAME}/${process.env.PROJECT_NAME}`
+  console.log('Preparing docker image release:', imageName)
+  releasePipeline.plugins.push(['kira-release', { imageName }])
 }
 
 module.exports = releasePipeline
