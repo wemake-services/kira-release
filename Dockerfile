@@ -19,4 +19,4 @@ RUN apk --no-cache add \
 # Installing dependencies in a separate cache layer
 WORKDIR /release
 COPY . /release/
-RUN npm install --workspaces --omit=dev
+RUN npm install
