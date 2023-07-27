@@ -86,6 +86,10 @@ if (!skipDocker || skipDocker.toLowerCase() !== 'true') {
   const imageName = `${process.env.GROUP_NAME}/${process.env.PROJECT_NAME}`
   console.log('Preparing docker image release:', imageName)
   releasePipeline.plugins.push(['kira-release', { imageName }])
+} else {
+  console.log(
+    `Skipping docker, because KIRA_RELEASE_SKIP_DOCKER is set to ${skipDocker}`,
+  )
 }
 
 module.exports = releasePipeline

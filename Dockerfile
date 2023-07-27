@@ -19,7 +19,7 @@ RUN apk --no-cache add \
 # Installing dependencies in a separate cache layer
 WORKDIR /release
 COPY package.json package-lock.json /release/
-RUN npm install --only=prod
+RUN npm install --omit=dev
 
 # Copy the release config:
 COPY release.config.js /release/

@@ -17,15 +17,28 @@ jobs:
     - name: build docker image
       run: docker build . --tag=wemake-services/kira-release
 
-    - name: run docker-based test
+    - name: run minimal docker-based test
       run: |
         docker run \
           -e KIRA_RELEASE_SKIP_DOCKER=true \
+          -v $PWD/tests:/tests \
+          wemake-services/kira-release \
+          sh /tests/run.sh
+
+    - name: run docker-based test with all features
+      run: |
+        # Plus has all the envs to pass local docker check:
+        docker run \
+          -e GROUP_NAME='wemake-services' -e PROJECT_NAME='kira-release' \
+          -e CI_REGISTRY_USER=${{ github.actor }} -e CI_REGISTRY='ghcr.io' \
+          -e CI_JOB_TOKEN \
           -e KIRA_RELEASE_REPLACE_CONFIG='{ "project": "package.json", "from": "\"version\": \".*\"", "to": "\"version\": \"${nextRelease.version}\"" }' \
           -e KIRA_RELEASE_EXEC_CONFIG='{ "prepareCmd": "echo released" }' \
           -v $PWD/tests:/tests \
           wemake-services/kira-release \
           sh /tests/run.sh
+      env:
+        CI_JOB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     if: "github.event_name == 'push' && github.repository == 'wemake-services/kira-release'"

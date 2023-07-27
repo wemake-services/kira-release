@@ -84,6 +84,22 @@ You can also optionally set:
 **Note:** You might want to use `$$` to escape `$` char in several environments like GitLab CI configuration file
 
 
+## Container release
+
+We use five ebv variables to publish pre-built containers into the registry.
+Basically, this is ready to work with GitLab CI and GitLab Container registry,
+but you can modify it to work with any registry / CI.
+For example, we use GitHub Container Registry in this project's CI
+(see `.github/workflows/test.yml`).
+
+Variables:
+- `CI_REGISTRY`: what registry you use: `registry.gitlab.com`, `ghrc.io`, or any other
+- `CI_REGISTRY_USER`: username to use for login
+- `CI_JOB_TOKEN`: the token we use to auth, can be any token that your registry supports
+- `GROUP_NAME`: organization name to use in image name
+- `PROJECT_NAME`: project name to use in image name
+
+
 ## Running
 
 Copy-paste our `.gitlab-ci.yml` file. And modify it to match your project.
