@@ -13,7 +13,6 @@ ENV GIT_AUTHOR_NAME="kira-bot" \
 RUN apk --no-cache add \
   curl \
   git \
-  openssh \
   nodejs \
   npm
 
