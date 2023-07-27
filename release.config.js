@@ -84,8 +84,8 @@ releasePipeline.plugins.push(['@semantic-release/gitlab', { assets }])
 // If it is not a docker-based app, this step will be ignored:
 if (!skipDocker || skipDocker.toLowerCase() !== 'true') {
   releasePipeline.plugins.push([
-    'semantic-release-gitlab-docker', {
-      'name': `${process.env.GROUP_NAME}/${process.env.PROJECT_NAME}`,
+    'kira-release', {
+      'imageName': `${process.env.GROUP_NAME}/${process.env.PROJECT_NAME}`,
     },
   ])
 }

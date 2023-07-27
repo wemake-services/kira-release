@@ -1,6 +1,6 @@
 FROM wemakeservices/wemake-dind:latest
 
-LABEL maintainer="sobolevn@wemake.services"
+LABEL maintainer="mail@sobolevn.me"
 LABEL vendor="wemake.services"
 
 ENV GIT_AUTHOR_NAME="kira-bot" \

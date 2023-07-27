@@ -83,6 +83,13 @@ You can also optionally set:
 
 **Note:** You might want to use `$$` to escape `$` char in several environments like GitLab CI configuration file
 
+
 ## Running
 
 Copy-paste our `.gitlab-ci.yml` file. And modify it to match your project.
+
+
+## Credis
+
+Special thanks to:
+- [`semantic-release-gitlab-docker`](https://gitlab.com/foxfarmroad/semantic-release-gitlab-docker) which we used before creating our own `GitLab` + `docker` release script
