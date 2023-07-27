@@ -15,7 +15,7 @@ RUN apk --no-cache add \
   git \
   openssh \
   nodejs \
-  nodejs-npm
+  npm
 
 # Installing dependencies in a separate cache layer
 WORKDIR /release
