@@ -1,0 +1,14 @@
+{
+  "name": "kira-release",
+  "version": "1.0.0",
+  "description": "semantic-release plugin to publish docker images to container registries",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "author": "sobolevn <mail@sobolevn.me>",
+  "license": "MIT",
+  "dependencies": {
+    "execa": "^7.2.0"
+  }
+}
