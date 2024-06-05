@@ -19,7 +19,7 @@ module.exports = async (pluginConfig, { logger }) => {
   }
 
   try {
-    await execa(
+    await execa.execa(
       'docker',
       [
         'login',
