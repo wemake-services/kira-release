@@ -6,8 +6,8 @@ module.exports = async (pluginConfig, { logger }) => {
     'CI_JOB_TOKEN',
     'CI_REGISTRY_USER',
     'CI_REGISTRY',
-    'GROUP_NAME',
-    'PROJECT_NAME',
+    'CI_PROJECT_NAMESPACE',
+    'CI_PROJECT_NAME',
   ]
   for (const envVar of requiredEnvVars) {
     if (!process.env[envVar]) {

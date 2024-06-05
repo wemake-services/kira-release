@@ -71,7 +71,6 @@ They are not required, but may help you:
 You are required to set:
 
 - `GITLAB_TOKEN` secret variable in CI configuration
-- `GROUP_NAME` and `PROJECT_NAME` either in CI configuration or in `.gitlab-ci.yml`
 
 You can also optionally set:
 
@@ -96,8 +95,8 @@ Variables:
 - `CI_REGISTRY`: what registry you use: `registry.gitlab.com`, `ghrc.io`, or any other
 - `CI_REGISTRY_USER`: username to use for login
 - `CI_JOB_TOKEN`: the token we use to auth, can be any token that your registry supports
-- `GROUP_NAME`: organization name to use in image name
-- `PROJECT_NAME`: project name to use in image name
+- `CI_PROJECT_NAMESPACE`: organization name to use in image name
+- `CI_PROJECT_NAME`: project name to use in image name
 
 
 ## Running

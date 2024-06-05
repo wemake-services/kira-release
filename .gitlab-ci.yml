@@ -1,8 +1,3 @@
-variables:
-  # Required. Adjust to match your project:
-  GROUP_NAME: ""
-  PROJECT_NAME: ""
-
 release:
   stage: deploy
   allow_failure: false
@@ -19,7 +14,7 @@ release:
     # modify it to suite your needs as you wish.
     # We only care about the name of the image:
     KIRA_RELEASE_EXEC_CONFIG: |
-      {"prepareCmd": "docker build -t \"$REGISTRY/$GROUP_NAME/$PROJECT_NAME\" ."}
+      {"prepareCmd": "docker build -t \"$REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME\" ."}
   script:
     # Copy the release configuration:
     - cp /release/release.config.js .
