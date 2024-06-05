@@ -15,7 +15,7 @@ module.exports = async (pluginConfig, { logger }) => {
   }
 
   if (!pluginConfig.imageName) {
-    throw new Error(`image name is not set in the config`)
+    throw new Error('image name is not set in the config')
   }
 
   try {
@@ -32,6 +32,6 @@ module.exports = async (pluginConfig, { logger }) => {
       },
     )
   } catch (err) {
-    throw new Error('GitLab registry login failed')
+    throw new Error('GitLab registry login failed', { cause: err })
   }
 }
