@@ -1,5 +1,6 @@
 module.exports = async (pluginConfig, { nextRelease: { version }, logger }) => {
-  const execa = await import('execa')
+  const execaModule = await import('execa')
+  const execa = execaModule.execa
 
   const registry = process.env.CI_REGISTRY
   logger.log(
@@ -11,9 +12,11 @@ module.exports = async (pluginConfig, { nextRelease: { version }, logger }) => {
   )
 
   // Push both new version and latest
-  execa('docker', ['push', `${registry}/${pluginConfig.imageName}:latest`], {
-    stdio: 'inherit',
-  })
+  execa(
+    'docker',
+    ['push', `${registry}/${pluginConfig.imageName}:latest`],
+    { stdio: 'inherit' },
+  )
   execa(
     'docker',
     [

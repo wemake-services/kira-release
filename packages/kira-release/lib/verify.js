@@ -1,5 +1,6 @@
 module.exports = async (pluginConfig, { logger }) => {
-  const execa = await import('execa')
+  const execaModule = await import('execa')
+  const execa = execaModule.execa
 
   const requiredEnvVars = [
     'CI_JOB_TOKEN',
@@ -18,20 +19,14 @@ module.exports = async (pluginConfig, { logger }) => {
     throw new Error('image name is not set in the config')
   }
 
-  try {
-    await execa.execa(
-      'docker',
-      [
-        'login',
-        `-u=${process.env.CI_REGISTRY_USER}`,
-        `-p=${process.env.CI_JOB_TOKEN}`,
-        process.env.CI_REGISTRY,
-      ],
-      {
-        stdio: 'inherit',
-      },
-    )
-  } catch (err) {
-    throw new Error('GitLab registry login failed', { cause: err })
-  }
+  await execa(
+    'docker',
+    [
+      'login',
+      `-u=${process.env.CI_REGISTRY_USER}`,
+      `-p=${process.env.CI_JOB_TOKEN}`,
+      process.env.CI_REGISTRY,
+    ],
+    { stdio: 'inherit' },
+  )
 }
