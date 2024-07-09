@@ -17,6 +17,19 @@ const replaceConfig = JSON.parse(
 const execConfig = JSON.parse(process.env.KIRA_RELEASE_EXEC_CONFIG || '{}')
 const skipDocker = process.env.KIRA_RELEASE_SKIP_DOCKER
 const branches = JSON.parse(process.env.KIRA_RELEASE_BRANCHES || '["master", "main"]')
+const includeComments = process.env.KIRA_INCLUDE_COMMENTS || 'off'
+
+const gitlabComments = {
+  'off': false,
+  'issue': '<% return issue %>',
+  'mergeRequest': '<% return mergeRequest %>',
+  'all': '<% return issue || mergeRequest %>',
+}
+if (!(includeComments in gitlabComments)) {
+  throw new Error(
+    `Invalid value: ${includeComments} for: ${Object.keys(gitlabComments)}`,
+  )
+}
 
 // Files to be committed back to the repo later on:
 const toBeCommitted = ['CHANGELOG.md']
@@ -78,7 +91,13 @@ if (Object.keys(execConfig).length !== 0) {
 }
 
 // Back to basic release pipeline:
-releasePipeline.plugins.push(['@semantic-release/gitlab', { assets }])
+const successComment = 'This issue has been resolved in version ${nextRelease.version} 🎉'
+const gitlabConfig = {
+  assets,
+  successComment,
+  'successCommentCondition': gitlabComments[includeComments],
+}
+releasePipeline.plugins.push(['@semantic-release/gitlab', gitlabConfig])
 
 // Maybe we should crete a docker release?
 // If it is not a docker-based app, this step will be ignored:
