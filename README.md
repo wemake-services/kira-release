@@ -2,7 +2,7 @@
 
 [![wemake.services](https://img.shields.io/badge/%20-wemake.services-green.svg?label=%20&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAALGPC%2FxhBQAAAAFzUkdCAK7OHOkAAAAbUExURQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP%2F%2F%2F5TvxDIAAAAIdFJOUwAjRA8xXANAL%2Bv0SAAAADNJREFUGNNjYCAIOJjRBdBFWMkVQeGzcHAwksJnAPPZGOGAASzPzAEHEGVsLExQwE7YswCb7AFZSF3bbAAAAABJRU5ErkJggg%3D%3D)](https://wemake.services)
 [![kira-family](https://img.shields.io/badge/kira-family-pink.svg)](https://github.com/wemake-services/kira)
-![Build](https://github.com/wemake-services/kira-release/workflows/Build/badge.svg?branch=master&event=push)
+[![test](https://github.com/wemake-services/kira-release/actions/workflows/test.yml/badge.svg?branch=master&event=push)](https://github.com/wemake-services/kira-release/actions/workflows/test.yml)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![Dependencies Status](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)](https://github.com/wemake-services/kira-release/pulls?utf8=%E2%9C%93&q=is%3Apr%20author%3Aapp%2Fdependabot)
 
@@ -75,6 +75,7 @@ You are required to set:
 You can also optionally set:
 
 - `KIRA_RELEASE_SKIP_DOCKER` to `'true'`, so your `docker` image deploy will be skipped
+- `KIRA_INCLUDE_COMMENTS` one of `['all', 'issue', 'mergeRequest', 'off']` values when and where to post a comment on release, default: `'off'`
 - `KIRA_RELEASE_ASSETS` to any [assets](https://github.com/semantic-release/git#assets) string, so it will upload these files to GitLab release
 - `KIRA_RELEASE_EXEC_CONFIG` string with `json` config to pass to [`@semantic-release/exec`](https://github.com/semantic-release/exec). Related docs on [why](https://semantic-release.gitbook.io/semantic-release/support/faq#how-can-i-use-a-npm-build-script-that-requires-the-package-jsons-version) would you possibly need this
 - `KIRA_RELEASE_REPLACE_CONFIG` string with `json` config of how to [bump version numbers](https://github.com/google/semantic-release-replace-plugin) in a project definition file, example: `KIRA_RELEASE_REPLACE_CONFIG='{ "project": "package.json", "from": "\"version\": \".*\"", "to": "\"version\": \"${nextRelease.version}\"" }'`
