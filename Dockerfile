@@ -15,7 +15,7 @@ RUN apk --no-cache add \
   git \
   nodejs \
   npm \
-  sqlite
+  sqlite-dev
 
 # Installing dependencies in a separate cache layer
 WORKDIR /release
