@@ -14,7 +14,8 @@ RUN apk --no-cache add \
   curl \
   git \
   nodejs \
-  npm
+  npm \
+  sqlite
 
 # Installing dependencies in a separate cache layer
 WORKDIR /release
