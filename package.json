@@ -21,7 +21,7 @@
     "@semantic-release/exec": "^7.1.0",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/gitlab": "^13.2.9",
-    "semantic-release": "^25.0.0",
+    "semantic-release": "^25.0.1",
     "semantic-release-replace-plugin": "^1.2.7"
   }
 }
