@@ -17,7 +17,7 @@
     "packages/kira-release"
   ],
   "dependencies": {
-    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/changelog": "^7.0.0",
     "@semantic-release/exec": "^7.1.0",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/gitlab": "^13.3.3",
