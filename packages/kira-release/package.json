@@ -9,6 +9,6 @@
   "author": "sobolevn <mail@sobolevn.me>",
   "license": "MIT",
   "dependencies": {
-    "execa": "^10.0.0"
+    "execa": "^10.0.1"
   }
 }
