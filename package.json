@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": false,
   "engines": {
-    "node": ">=20.8"
+    "node": ">=26.13"
   },
   "scripts": {
     "release": "semantic-release"
@@ -21,7 +21,7 @@
     "@semantic-release/exec": "^7.1.0",
     "@semantic-release/git": "^11.0.1",
     "@semantic-release/gitlab": "^13.3.5",
-    "semantic-release": "^25.0.9",
+    "semantic-release": "^26.0.1",
     "semantic-release-replace-plugin": "^1.2.7"
   }
 }

@@ -1,3 +1,7 @@
+ARG NODE_VERSION=26.13
+
+FROM node:${NODE_VERSION}-alpine AS node
+
 FROM wemakeservices/wemake-dind:latest
 
 LABEL maintainer="mail@sobolevn.me"
@@ -13,9 +17,14 @@ ENV GIT_AUTHOR_NAME="kira-project" \
 RUN apk --no-cache add \
   curl \
   git \
-  nodejs \
-  npm \
   sqlite-dev
+
+COPY --from=node /usr/lib /usr/lib
+COPY --from=node /usr/local/lib /usr/local/lib
+COPY --from=node /usr/local/include /usr/local/include
+COPY --from=node /usr/local/bin /usr/local/bin
+
+RUN node -v
 
 # Installing dependencies in a separate cache layer
 WORKDIR /release
