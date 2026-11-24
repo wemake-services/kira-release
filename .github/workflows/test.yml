@@ -17,6 +17,15 @@ jobs:
     - name: build docker image
       run: docker build . --tag=wemake-services/kira-release
 
+    - name: check Docker entrypoint configuration
+      run: |
+        docker run --rm --network none \
+          -e DOCKER_HOST= \
+          -e DOCKER_TLS_CERTDIR= \
+          -e DOCKER_TLS_VERIFY= \
+          wemake-services/kira-release \
+          sh -ec 'test "$DOCKER_HOST" = "tcp://docker:2375"'
+
     - name: run minimal docker-based test
       run: |
         docker run \
