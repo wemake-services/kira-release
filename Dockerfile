@@ -19,10 +19,15 @@ RUN apk --no-cache add \
   git \
   sqlite-dev
 
+# Preserve the Docker entrypoint before Node overwrites docker-entrypoint.sh.
+RUN cp /usr/local/bin/docker-entrypoint.sh /usr/local/bin/docker-cli-entrypoint.sh
+
 COPY --from=node /usr/lib /usr/lib
 COPY --from=node /usr/local/lib /usr/local/lib
 COPY --from=node /usr/local/include /usr/local/include
 COPY --from=node /usr/local/bin /usr/local/bin
+
+ENTRYPOINT ["/usr/local/bin/docker-cli-entrypoint.sh"]
 
 RUN node -v
 
